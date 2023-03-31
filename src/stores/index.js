@@ -7,6 +7,11 @@ export default createStore({
     events: [],
     event: {}
   },
+  getters: {
+    numberOfEvents(state) {           // in vuex one needs to pass the state, unlike in pinia
+      return state.events.length
+    }
+  },
   mutations: {
     ADD_EVENT(state, event) {
       state.events.push(event)

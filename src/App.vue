@@ -5,11 +5,25 @@
       <router-link :to="{ name: 'About' }">About</router-link>
       |
       <router-link :to="{ name: 'EventCreate' }">Create Event</router-link>
+        <!-- below I am calling the property I want to use from the store. can replace user with firstName to access the getter for firstName-->
+        <p>Logged in as {{ userStore.user }}</p>                           
     </div>
     <router-view />
   </div>
 </template>
+<script>
+import { useUserStore } from './stores/UserStore'                           // import useUserStore fn to use in component
 
+export default {
+  setup() {
+    const userStore = useUserStore()                                       // assign fn to local var -> store is ready to use
+    return {                                                               // expose userStore back to the component by returning it in an object
+      userStore
+    }
+  }
+}
+
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
